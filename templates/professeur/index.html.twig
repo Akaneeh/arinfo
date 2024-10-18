@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Professeur index{% endblock %}
+
+{% block body %}
+    <h1>Liste des professeurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_professeur</th>
+                <th>Prenom_professeur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for professeur in professeurs %}
+            <tr>
+                <td>{{ professeur.id }}</td>
+                <td>{{ professeur.nomProfesseur }}</td>
+                <td>{{ professeur.prenomProfesseur }}</td>
+                <td>
+                    <a href="{{ path('app_professeur_show', {'id': professeur.id}) }}">voir</a>
+                    <a href="{{ path('app_professeur_edit', {'id': professeur.id}) }}">éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">aucune entrée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_professeur_new') }}">Créer un nouveau professeur</a>
+{% endblock %}

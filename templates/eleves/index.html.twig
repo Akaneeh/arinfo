@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eleves index{% endblock %}
+
+{% block body %}
+    <h1>Liste des élèves</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_eleve</th>
+                <th>Prenom_eleve</th>
+                <th>Date_naissance_eleve</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eleve in eleves %}
+            <tr>
+                <td>{{ eleve.id }}</td>
+                <td>{{ eleve.nomEleve }}</td>
+                <td>{{ eleve.prenomEleve }}</td>
+                <td>{{ eleve.dateNaissanceEleve ? eleve.dateNaissanceEleve|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_eleves_show', {'id': eleve.id}) }}">voir</a>
+                    <a href="{{ path('app_eleves_edit', {'id': eleve.id}) }}">éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">aucune entrée trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eleves_new') }}">Créer un nouvel élève</a>
+{% endblock %}

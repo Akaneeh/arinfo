@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'Élève{% endblock %}
+
+{% block body %}
+    <h1>Détails de l'Élève</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ eleve.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ eleve.nomEleve }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ eleve.prenomEleve }}</td>
+            </tr>
+            <tr>
+                <th>Date de Naissance</th>
+                <td>{{ eleve.dateNaissanceEleve ? eleve.dateNaissanceEleve|date('Y-m-d') : 'N/A' }}</td>
+            </tr>
+            <tr>
+                <th>Classe</th>
+                <td>{{ eleve.classe.nomClasse }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eleves_index') }}">Retour à la liste</a><br>
+    <a href="{{ path('app_eleves_edit', {'id': eleve.id}) }}">Modifier</a>
+    {{ include('eleves/_delete_form.html.twig') }}
+{% endblock %}
