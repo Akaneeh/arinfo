@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Club index{% endblock %}
+
+{% block body %}
+    <h1>Liste des clubs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomClub</th>
+                <th>SportClub</th>
+                <th>AdresseClub</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+            <tr>
+                <td>{{ club.id }}</td>
+                <td>{{ club.nomClub }}</td>
+                <td>{{ club.sportClub }}</td>
+                <td>{{ club.adresseClub }}</td>
+                <td>
+                    <a href="{{ path('app_club_show', {'id': club.id}) }}">voir</a>
+                    <a href="{{ path('app_club_edit', {'id': club.id}) }}">éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">aucun club trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_club_new') }}">Créer un nouveau club</a>
+{% endblock %}

@@ -1,1 +1,3 @@
-Repository pour centraliser les différents exercices liés a la formation Arinfo
+# tp_symfony2
+
+ouvrir en local
